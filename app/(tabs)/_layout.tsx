@@ -5,6 +5,7 @@ import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import * as Icon from 'react-native-feather';
+import { View } from 'react-native';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -12,7 +13,7 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: 'black',
+        tabBarActiveTintColor: Colors.default.green,
         headerShown: false,
       }}>
       <Tabs.Screen
@@ -20,7 +21,7 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           tabBarIcon: ({ color, focused }) => (
-            <Icon.Home height="25" weight="25" stroke="gray"/>
+            <Icon.Home height="25" weight="25" stroke={color}/>
           ),
         }}
       />
@@ -29,7 +30,7 @@ export default function TabLayout() {
         options={{
           title: 'Favorito',
           tabBarIcon: ({ color, focused }) => (
-            <Icon.Heart height="25" weight="25" stroke="gray"/>
+            <Icon.Heart height="25" weight="25" stroke={color}/>
           ),
         }}
       />
@@ -38,7 +39,7 @@ export default function TabLayout() {
         options={{
           title: 'Crear',
           tabBarIcon: ({ color, focused }) => (
-            <Icon.PlusCircle height="25" weight="25" stroke="gray"/>
+            <Icon.PlusCircle height="25" weight="25" stroke={color}/>
           ),
         }}
       />
@@ -47,7 +48,7 @@ export default function TabLayout() {
         options={{
           title: 'Notificaciones',
           tabBarIcon: ({ color, focused }) => (
-            <Icon.Bell height="25" weight="25" stroke="gray"/>
+            <Icon.Bell height="25" weight="25" stroke={color}/>
           ),
         }}
       />
@@ -56,7 +57,7 @@ export default function TabLayout() {
         options={{
           title: 'Cuenta',
           tabBarIcon: ({ color, focused }) => (
-            <Icon.Settings height="25" weight="25" stroke="gray"/>
+            <Icon.Settings height="25" weight="25" stroke={color}/>
           ),
         }}
       />

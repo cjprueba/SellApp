@@ -5,7 +5,10 @@ import React, { useEffect, useState } from 'react';
 import { Bars3CenterLeftIcon, BellIcon } from 'react-native-heroicons/solid'
 import  GradientButton  from '../../components/gradientButton';
 import ProductCardNative from "../../components/ProductCardNative";
+import Product from "../../components/Product";
 import * as Icon from 'react-native-feather';
+import { Colors } from '@/constants/Colors';
+import { Feather } from '@expo/vector-icons';
 
 const categories = ['Todos', 'Autos', 'Bicicletas', 'Ropa', 'Joyas', 'Motos']
 
@@ -51,14 +54,29 @@ export default function HomeScreen() {
         <View className="container">
 
           { /* Search Bar */ }
-          <View className="flex-row justify-between items-center px-4 pb-2 ">
-            <View className="flex-row flex-1 items-center p-3 rounded-full border border-slate-300">
-                <Icon.Search  height="25" weight="25" stroke="gray"/>
-                <TextInput placeholder="Búsqueda" className="ml-2 flex-1" />
-                <View className="flex-row items-center space-x-1 border-0">
-                  <Icon.MapPin height="25" weight="25" stroke="gray"/>
-                  <Text className="text-slate-300" >CDE, Py</Text>
+          <View className="p-4">
+            <View className="flex-row items-center justify-between">
+              <View>
+                <Text className="text-gray-500">Ubicación</Text>
+                <View className="flex-row items-center">
+                  
+                  <Feather name="map-pin" size={16} color={Colors.default.green}/>
+                  
+                  <Text className="ml-1 text-md">Ciudad del Este, Py</Text>
+                  <Feather name="chevron-down" size={16} color="black" />
                 </View>
+              </View>
+              <Feather name="bell" size={24} color="black" />
+            </View>
+            <View className="flex-row items-center mt-4 bg-gray-100 p-1 rounded-lg bg-white">
+              <Feather name="search" size={20} color="gray" />
+              <TextInput
+                placeholder="Search Furniture"
+                className="flex-1 ml-2"
+              />
+              <View className="bg-green-600 p-2 rounded-lg">
+                <Feather name="sliders" size={20} color={Colors.default.tertiary} />
+              </View>
             </View>
           </View>
 
@@ -73,8 +91,8 @@ export default function HomeScreen() {
                     
                   } else {
                     return (
-                      <TouchableOpacity onPress={() => setActiveCategory(cat)} key={cat} className="bg-blue-200 p-3 px-4 rounded-full mr-2">
-                        <Text>
+                      <TouchableOpacity onPress={() => setActiveCategory(cat)} key={cat} className="bg-green-600 p-2 px-4 rounded-full mr-2">
+                        <Text className="text-green-50">
                         {cat}
                         </Text>
                       </TouchableOpacity>
@@ -88,10 +106,10 @@ export default function HomeScreen() {
           </View>
           
           <View className="mt-3">
-            <Text className="ml-4 text-2xl font-bold" >Productos Cercanos</Text>
+            <Text className="ml-4 text-xl font-bold " >Productos Cercanos</Text>
           </View>
 
-          <View className="mt-2">
+          <View className="mx-auto mt-2">
           <FlatList
             data={products}
             keyExtractor={(item) => item.id.toString()}
@@ -104,9 +122,12 @@ export default function HomeScreen() {
             <View
               key={item.id}
             >  
-              <ProductCardNative 
+              {/*<ProductCardNative 
                 item={item}
-              />
+              />*/}
+
+              <Product item={item} />
+              
             </View>
 
             )}
